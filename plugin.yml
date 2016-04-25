@@ -1,0 +1,7 @@
+name: Staff
+main: me.nipe.Staff.Staff
+version: 0.1
+commands:
+  staff:
+    description: Skriver hvem der er staff
+    usage: /<command>
