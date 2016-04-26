@@ -1,12 +1,15 @@
 package me.nipe.Staff;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Collection;
+
 /**
- * Created by Mads og Thomas on 25/04/2016.
+ * Created by Mads og Thomas on 26/04/2016.
  */
 public class Staff extends JavaPlugin {
     @Override
@@ -24,12 +27,14 @@ public class Staff extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String comandLabel, String [] args) {
         if (cmd.getName().equalsIgnoreCase("staff") && sender instanceof Player) {
-            Player player = (Player) sender;
-            player.sendMessage("Owner mmmaaddss\n" +
-                    "Co-Owner thomasaagaard\n" +
-                    "Head-Admin Avkiller\n" +
-                    "Admin + Tekniker ItsSuperPlaysMC\n" +
-                    "Admin + Bygger JuniorP1");
+
+            Player currentPlayer = ((Player) sender);
+            currentPlayer.sendMessage("Online players:\n");
+
+            Collection<? extends Player> onlinePlayers = sender.getServer().getOnlinePlayers();
+            for (Player onlinePlayer : onlinePlayers) {
+                currentPlayer.sendMessage(onlinePlayer.getName()+" "+onlinePlayer.getDisplayName()+" "+onlinePlayer.getType().name());
+            }
             return true;
         }
         return false;
